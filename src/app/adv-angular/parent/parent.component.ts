@@ -12,30 +12,14 @@ import { Router } from '@angular/router';
   styleUrl: './parent.component.scss'
 })
 export class ParentComponent {
-  // parentValue = 0;
 
-  // handleValueChanged(newValue : number){
-  //   console.log("New value from child",newValue);
-  //   this.parentValue = newValue;
-  // }
-
-  // @ViewChild(ChildComponent) childComponent! : ChildComponent;
-
-  // ngAfterViewInit(){
-  //   console.log("Child property",this.childComponent.childProperty);
-  //   console.log("Child method",this.childComponent.childMethod);
-    
-  // }
-
-  @ContentChild(ChildComponent) childComponentRef!:ChildComponent;
-
-  ngAfterContentInit(){
-    console.log("ChildComponentRef",this.childComponentRef);
-    
-  }
 
   constructor(public authService:AuthService,private router: Router){
 
+  }
+
+  goToChild() {
+    this.router.navigate(['/adv-angular/child']);
   }
 
   logout(){

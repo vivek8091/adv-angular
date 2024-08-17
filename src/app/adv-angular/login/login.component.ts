@@ -19,28 +19,51 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.setAndPatchValues();
+  }
+
+  initializeForm() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  onSubmit() {
+  setAndPatchValues() {
+    const userData = {
+      username: 'vivek',
+      password: '123',
+    };
+
+    this.loginForm.patchValue({
+      username: userData.username,
+      password: userData.password
+    });
+
+    this.loginForm.setValue(userData);
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault(); // Prevents default form submission...
+    console.log("Form Validity:", this.loginForm.valid); // Ensures that form is valid or not...
+    console.log("Form Errors:", this.loginForm.errors); // Ensures that is there any error or not...
     if (this.loginForm.valid) {
+
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
 
-      if(this.authService.login(username,password)){
-        this.loginForm.reset();
-        this.router.navigate(['/adv-angular/parent']);
-      }else{
-        console.log("Invalid Credentials");
-        
+      if (this.authService.login(username, password)) { // checks if credentials are same...
+        console.log("Login successful"); // Prints only when credentials are valid...
+        this.loginForm.reset(); // To reset the form
+        this.router.navigate(['/adv-angular/parent']); // Redirect to parent page...
+      } else {
+        console.log("Invalid Credentials"); // Prints only when credentials are invalid...
+        alert("Invalid Credentials");
       }
 
     } else {
-      console.log("Invalid Credentials");
-      alert("Invalid Credentials");
+      console.log("Form is invalid");
     }
   }
 

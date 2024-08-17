@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isLoggedIn = false;
-
   login(username:string,password:string){
-    
-    if(username == 'user' && password == 'pass' ){
+    console.log("Username:", username , "Password:" , password);
+    if(username === 'vivek' && password === '123' ){
       this.isLoggedIn = true;
+      console.log("Logged In?",this.isLoggedIn);
       return true
     }
     return false;
