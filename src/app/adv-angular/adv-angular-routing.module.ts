@@ -7,8 +7,6 @@ import { authGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // Route for the login page
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },  // Redirect the default path to the login page
-  // { path: '**', redirectTo: 'login' },
   {
     path: '', canActivate: [authGuard],
     children: [

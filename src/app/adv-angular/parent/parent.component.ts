@@ -13,10 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ParentComponent {
 
-
-  constructor(public authService:AuthService,private router: Router){
-
-  }
+  constructor(public authService:AuthService,private router: Router){  }
 
   goToChild() {
     this.router.navigate(['/adv-angular/child']);
